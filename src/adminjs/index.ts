@@ -5,6 +5,7 @@ import { sequelize } from "../database";
 import { adminJsResources } from "./resources";
 import { User } from "../models";
 import bcrypt from "bcrypt";
+import { locale } from "./locale";
 
 AdminJS.registerAdapter(AdminJSSequelize);
 
@@ -15,6 +16,7 @@ export const adminJs = new AdminJS({
     companyName: "AntonioMarchese",
   },
   resources: adminJsResources,
+  locale: locale,
 });
 
 // Criação de uma rota autenticada para o painel do AdminJs
