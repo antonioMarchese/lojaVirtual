@@ -36,12 +36,10 @@ export const Product = sequelize.define<ProductInstance, Product>("Product", {
     onDelete: "RESTRICT",
   },
   status: {
-    allowNull: false,
     type: DataTypes.STRING,
     validate: {
       isIn: [["ACTIVE", "INACTIVE"]],
     },
-    defaultValue: "ACTIVE",
   },
   quantity: {
     allowNull: false,

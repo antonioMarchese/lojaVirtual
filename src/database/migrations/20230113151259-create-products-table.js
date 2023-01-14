@@ -25,7 +25,6 @@ module.exports = {
       status: {
         allowNull: false,
         type: Sequelize.DataTypes.STRING,
-        defaultValue: "ACTIVE",
       },
       quantity: {
         allowNull: false,
