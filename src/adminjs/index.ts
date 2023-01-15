@@ -3,7 +3,7 @@ import AdminJSExpress from "@adminjs/express";
 import AdminJSSequelize from "@adminjs/sequelize";
 import { sequelize } from "../database";
 import { adminJsResources } from "./resources";
-import { User } from "../models";
+import { Category, Product, User } from "../models";
 import bcrypt from "bcrypt";
 import { locale } from "./locale";
 
@@ -17,6 +17,24 @@ export const adminJs = new AdminJS({
   },
   resources: adminJsResources,
   locale: locale,
+  dashboard: {
+    component: AdminJS.bundle("./components/Dashboard"),
+    handler: async (req, res, context) => {
+      const categories = await Category.count();
+      const products = await Product.count();
+      const users = await User.count({
+        where: {
+          role: "user",
+        },
+      });
+
+      res.json({
+        Categorias: categories,
+        Produtos: products,
+        Usuários: users,
+      });
+    },
+  },
 });
 
 // Criação de uma rota autenticada para o painel do AdminJs
