@@ -8,4 +8,8 @@ export const jwtService = {
       expiresIn,
     });
   },
+
+  verifyToken: (token: string, callbackfn: jwt.VerifyCallback) => {
+    jwt.verify(token, secret, callbackfn);
+  },
 };
