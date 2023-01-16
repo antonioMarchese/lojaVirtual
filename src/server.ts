@@ -1,12 +1,15 @@
 import express from "express";
 import { adminJs, adminJsRouter } from "./adminjs";
 import { sequelize } from "./database";
+import { router } from "./routes";
 
 const app = express();
 
 app.use(express.static("public"));
 
 app.use(adminJs.options.rootPath, adminJsRouter);
+
+app.use(router);
 
 // Geralmente o valor da porta fica armazenada numa variavel ambiente em '.env', por isso o 'ou = ||'
 const PORT = process.env.PORT || 3001;
