@@ -18,4 +18,17 @@ export const categoriesService = {
       categories: rows,
     };
   },
+
+  findByIdWithProducts: async (id: string) => {
+    const categoryWithProducts = await Category.findByPk(id, {
+      attributes: ["id", "name"],
+      include: {
+        association: "products",
+        attributes: ["id", "name", "quantity", "status"],
+        order: [["id", "ASC"]],
+      },
+    });
+
+    return categoryWithProducts;
+  },
 };
