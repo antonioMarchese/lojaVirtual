@@ -13,5 +13,6 @@ router.get("/products", productsController.index);
 router.get("/products/:id", productsController.show);
 
 router.post("/auth/register", authController.register);
+router.post("/auth/login", authController.login);
 
 export { router };
