@@ -7,6 +7,7 @@ export interface Product {
   categoryId: number;
   quantity: number;
   status: "ACTIVE" | "INACTIVE";
+  deletedAt: Date;
 }
 
 // As linhas abaixo informam que para criar um produto não precisamos informar o id nem o status
@@ -44,5 +45,9 @@ export const Product = sequelize.define<ProductInstance, Product>("Product", {
   quantity: {
     allowNull: false,
     type: DataTypes.INTEGER,
+  },
+  deletedAt: {
+    allowNull: true,
+    type: DataTypes.DATE,
   },
 });
