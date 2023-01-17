@@ -5,15 +5,15 @@
 <h2>Começando</h2>
 <ol>
   <li>Após baixar os arquivos, entre na pasta e instale as dependências com 'npm i' ou 'yarn add'. Como no meu caso utilizei npm, os próximos passos serão levando em conta esse gerenciador de pacotes.</li>
-  <li>Para que seja possível criar o banco de dados, é preciso criar o usuário 'lojavirtual' (configurado na pasta src/database/index) ou utilizar algum usuário que você já possui. Para criar o presente usuário, entre na linha de comando do postgres ('psql') e digite: <span>CREATE USER lojavirtual CREATEDB ENCRYPTED PASSWORD 'lojavirtual'</span>
+  <li>Para que seja possível criar o banco de dados, é preciso criar o usuário 'lojavirtual' (configurado na pasta src/database/index) ou utilizar algum usuário que você já possui. Para criar o presente usuário, entre na linha de comando do postgres ('psql') e digite: <strong>"CREATE USER lojavirtual CREATEDB ENCRYPTED PASSWORD 'lojavirtual';"</strong>
   </li>
-  <li>O próximo passo é criar o banco de dados com a sequelize-cli. Para isso, digite o comando <span>npx sequelize-cli db:create</span>
+  <li>O próximo passo é criar o banco de dados com a sequelize-cli. Para isso, digite o comando <strong>npx sequelize-cli db:create</strong>
   </li>
-  <li>Agora que o banco de dados já existe, é preciso fazer as migrations. Para isso, digite o comando <span>npx sequelize-cli db:migrate</span>
+  <li>Agora que o banco de dados já existe, é preciso fazer as migrations. Para isso, digite o comando <strong>npx sequelize-cli db:migrate</strong>
   </li>
-  <li>Depois de fazer as migrations, é preciso criar um usuário administrador para que seja possível utilizar o painel administrativo (AdminJS) e as funcionalidades de criar, atualizar e deletar produtos/categorias. Para fazer isso, basta digitar o comando <span>npx sequelize-cli db:seed --seed .\src\database\seeders\20230113195736-create-admin-user.js</span>.
+  <li>Depois de fazer as migrations, é preciso criar um usuário administrador para que seja possível utilizar o painel administrativo (AdminJS) e as funcionalidades de criar, atualizar e deletar produtos/categorias. Para fazer isso, basta digitar o comando <strong>npx sequelize-cli db:seed --seed .\src\database\seeders\20230113195736-create-admin-user.js</strong>.
   </li>
-  <li>Agora, digitando o comando <span>npm run dev</span> a aplicação será lançada na porta 3001 e você poderá acessar o painel administrativo em <a href="http://localhost:3001/admin/login">http://localhost:3001/admin/login</a> (logando com email = admin@email.com e senha =123456). Caso você queira popular o banco de dados basta digitar o comando <span>npx sequelize-cli db:seed:all</span> e, ao entrar no painel do AdminJS, já será possível ver alguns produtos e categorias.</li>
+  <li>Agora, digitando o comando <strong>npm run dev</strong> a aplicação será lançada na porta 3001 e você poderá acessar o painel administrativo em <a href="http://localhost:3001/admin/login">http://localhost:3001/admin/login</a> (logando com email = admin@email.com e senha =123456). Caso você queira popular o banco de dados basta digitar o comando <strong>npx sequelize-cli db:seed:all</strong> e, ao entrar no painel do AdminJS, já será possível ver alguns produtos e categorias.</li>
 </ol>
 <hr/>
 
