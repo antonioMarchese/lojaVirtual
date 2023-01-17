@@ -7,6 +7,8 @@ export const productsService = {
     const offset = (page - 1) * perPage; // offset é usado la no SQL
 
     const { count, rows } = await Product.findAndCountAll({
+      // Paranoid falso possibilita a listagem de produtos ja marcados como deletados
+      paranoid: false,
       attributes: ["id", "name"],
       order: [["id", "ASC"]],
       limit: perPage,
