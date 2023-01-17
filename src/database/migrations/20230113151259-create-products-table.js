@@ -18,9 +18,10 @@ module.exports = {
         type: Sequelize.DataTypes.INTEGER,
         // references é usado para simplificar a forma como vamos lidar com os relacionamentos entre tabelas
         references: { model: "categories", key: "id" },
-        // as opções abaixo são para dizer oq acontece com o registro da tabela 'produtos' se a categoria da qual ele depende for atualizada ou excluída => onDelete = RESTRICT impossibilita a exclusão de qualquer categoria que possua algum produto
+        // as opções abaixo são para dizer oq acontece com o registro da tabela 'produtos' se a categoria da qual ele depende for atualizada ou excluída => onDelete = CASCADE deletar uma categoria significa deletar todos os produtos dela também
+
         onUpdate: "CASCADE",
-        onDelete: "RESTRICT",
+        onDelete: "CASCADE",
       },
       status: {
         allowNull: false,

@@ -15,10 +15,6 @@ export const productsService = {
         association: "category",
         attributes: ["id", "name"],
       },
-      // Para que produtos deletados não apareçam nas buscas
-      where: {
-        deletedAt: null,
-      },
     });
 
     return {
@@ -35,6 +31,7 @@ export const productsService = {
         association: "category",
         attributes: ["name", "id"],
       },
+      paranoid: false, // faz com que seja possível obter as informações do produto mesmo que ele tenha sido deletado
     });
 
     return product;
@@ -65,6 +62,14 @@ export const productsService = {
       returning: true,
     });
 
+    if (!products[0]) throw new Error("Produto ainda não cadastrado.");
+
     return products[0];
+  },
+
+  delete: async (id: number) => {
+    await Product.destroy({
+      where: { id },
+    });
   },
 };

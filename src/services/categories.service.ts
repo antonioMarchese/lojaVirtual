@@ -31,4 +31,15 @@ export const categoriesService = {
 
     return categoryWithProducts;
   },
+
+  create: async (name: string) => {
+    const category = await Category.create({
+      name,
+    });
+    return category;
+  },
+
+  delete: async (id: number) => {
+    await Category.destroy({ where: { id } });
+  },
 };

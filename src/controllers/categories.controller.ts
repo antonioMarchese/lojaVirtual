@@ -31,4 +31,28 @@ export const categoriesController = {
         return res.status(400).json({ message: error.message });
     }
   },
+
+  // POST /categories/register
+  register: async (req: Request, res: Response) => {
+    const { name } = req.body;
+    try {
+      const category = await categoriesService.create(name);
+      return res.status(201).json(category);
+    } catch (error) {
+      if (error instanceof Error)
+        return res.status(400).json({ message: error.message });
+    }
+  },
+
+  // DELETE /categories/:id
+  delete: async (req: Request, res: Response) => {
+    const { id } = req.params;
+    try {
+      await categoriesService.delete(Number(id));
+      return res.status(201).send();
+    } catch (error) {
+      if (error instanceof Error)
+        return res.status(400).json({ message: error.message });
+    }
+  },
 };

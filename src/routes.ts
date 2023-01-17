@@ -8,13 +8,16 @@ const router = express.Router();
 
 router.get("/categories", categoriesController.index);
 router.get("/categories/:id", categoriesController.show);
+// Apenas usuários administradores podem cadastrar, atualizar ou deletar categorias novas
+router.post("/categories/register", ensureAuth, categoriesController.register);
+router.delete("/categories/:id", ensureAuth, categoriesController.delete);
 
 router.get("/products", productsController.index);
 router.get("/products/:id", productsController.show);
-// Apenas usuários administradores podem cadastrar produtos novos
+// Apenas usuários administradores podem cadastrar, atualizar ou deletar produtos novos
 router.post("/products/register", ensureAuth, productsController.register);
-
-router.put("/products/:id", productsController.update);
+router.put("/products/:id", ensureAuth, productsController.update);
+router.delete("/products/:id", ensureAuth, productsController.delete);
 
 router.post("/auth/register", authController.register);
 router.post("/auth/login", authController.login);

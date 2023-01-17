@@ -27,6 +27,7 @@ export const productsController = {
     }
   },
 
+  // GET /products/:id
   show: async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
@@ -38,6 +39,7 @@ export const productsController = {
     }
   },
 
+  // POST /products/register
   register: async (req: Request, res: Response) => {
     const { name, categoryId, quantity } = req.body;
     const productAlredyExists = await productsService.findByName(name);
@@ -57,6 +59,7 @@ export const productsController = {
     }
   },
 
+  // PUT /products/:id
   update: async (req: Request, res: Response) => {
     const { id } = req.params;
     const { name, quantity, status, categoryId }: UpdateProduct = req.body;
@@ -69,6 +72,18 @@ export const productsController = {
       });
 
       return res.status(201).json(product);
+    } catch (error) {
+      if (error instanceof Error)
+        return res.status(400).json({ message: error.message });
+    }
+  },
+
+  // DELETE /products/:id
+  delete: async (req: Request, res: Response) => {
+    const { id } = req.params;
+    try {
+      await productsService.delete(Number(id));
+      return res.status(201).send();
     } catch (error) {
       if (error instanceof Error)
         return res.status(400).json({ message: error.message });
