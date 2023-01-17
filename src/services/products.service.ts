@@ -1,4 +1,6 @@
+import { UpdateProduct } from "../controllers/products.controller";
 import { Product } from "../models";
+import { ProductCreationAttributes } from "../models/Product";
 
 export const productsService = {
   findAllPaginated: async (page: number, perPage: number) => {
@@ -36,5 +38,33 @@ export const productsService = {
     });
 
     return product;
+  },
+
+  findByName: async (name: string) => {
+    const product = await Product.findOne({
+      where: { name },
+    });
+
+    return product;
+  },
+
+  create: async (attributes: ProductCreationAttributes) => {
+    const product = await Product.create({ ...attributes, status: "ACTIVE" });
+    return {
+      id: product.id,
+      name: product.name,
+      quantity: product.quantity,
+      status: product.status,
+      categoryId: product.categoryId,
+    };
+  },
+
+  update: async (id: string, attributes: UpdateProduct) => {
+    const [affectedRows, products] = await Product.update(attributes, {
+      where: { id },
+      returning: true,
+    });
+
+    return products[0];
   },
 };

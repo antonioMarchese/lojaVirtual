@@ -12,7 +12,7 @@ export interface Product {
 
 // As linhas abaixo informam que para criar um produto não precisamos informar o id nem o status
 export interface ProductCreationAttributes
-  extends Optional<Product, "id" | "status"> {}
+  extends Optional<Product, "id" | "status" | "deletedAt"> {}
 
 export interface ProductInstance
   extends Model<Product, ProductCreationAttributes>,
