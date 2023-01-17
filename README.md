@@ -63,3 +63,6 @@
   </li>
 
 </ol>
+<hr/>
+<h2>Por fim</h2>
+<p>O arquivo "Loja Virtual.postman_collection.json" pode ser importado no Postman, isso fará com que você não precise criar todas essas rotas :) </p>
