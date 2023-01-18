@@ -32,6 +32,13 @@ export const categoriesService = {
     return categoryWithProducts;
   },
 
+  findByName: async (name: string) => {
+    const category = await Category.findOne({
+      where: { name },
+    });
+    return category;
+  },
+
   create: async (name: string) => {
     const category = await Category.create({
       name,

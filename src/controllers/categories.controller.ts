@@ -36,6 +36,10 @@ export const categoriesController = {
   register: async (req: Request, res: Response) => {
     const { name } = req.body;
     try {
+      const categoryAleredyExists = await categoriesService.findByName(name);
+      if (categoryAleredyExists)
+        return res.status(401).json({ message: "Categoria já registrada." });
+
       const category = await categoriesService.create(name);
       return res.status(201).json(category);
     } catch (error) {
